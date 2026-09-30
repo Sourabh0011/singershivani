@@ -5,7 +5,7 @@ function Row({ reverse = false }: { reverse?: boolean }) {
   const items = [...genres, ...genres];
   return (
     <div
-      className={`flex w-max animate-marquee items-center group-hover:[animation-play-state:paused] ${
+      className={`flex w-max animate-marquee items-center will-change-transform group-hover:[animation-play-state:paused] ${
         reverse ? "[animation-direction:reverse]" : ""
       }`}
     >

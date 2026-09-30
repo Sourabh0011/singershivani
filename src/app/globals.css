@@ -78,6 +78,18 @@ html {
   scroll-padding-top: 84px;
   background: var(--color-ink);
   color-scheme: dark;
+  /* no grey flash on tap (Android) */
+  -webkit-tap-highlight-color: transparent;
+  /* keeps the page from shifting sideways when the menu/photo viewer locks scrolling */
+  scrollbar-gutter: stable;
+}
+
+/* Instant taps — no double-tap-to-zoom delay on buttons and links */
+a,
+button,
+select,
+label {
+  touch-action: manipulation;
 }
 
 body {
@@ -100,6 +112,10 @@ body::before {
   pointer-events: none;
   opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* A full-screen overlay costs phones smoothness while scrolling; the grain is only for big screens. */
+  @media (pointer: coarse) {
+    display: none;
+  }
 }
 
 ::selection {
@@ -149,8 +165,12 @@ body::before {
 @utility glass {
   background: linear-gradient(145deg, rgb(255 255 255 / 0.07), rgb(255 255 255 / 0.02));
   border: 1px solid rgb(249 220 148 / 0.14);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  /* Live blur is costly to redraw while scrolling on phones, and barely visible on this dark
+     background — so it's only used on devices with a mouse. */
+  @media (hover: hover) and (pointer: fine) {
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
 }
 
 /* Temple-arch shaped frame */
@@ -189,14 +209,23 @@ body::before {
   transform: translateX(-120%);
   transition: transform 0.7s ease;
 }
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 16px 40px -10px rgb(233 180 76 / 0.85),
-    inset 0 1px 0 rgb(255 255 255 / 0.5);
+/* Hover effects only on devices with a mouse — on phones they would "stick" after a tap */
+@media (hover: hover) {
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 16px 40px -10px rgb(233 180 76 / 0.85),
+      inset 0 1px 0 rgb(255 255 255 / 0.5);
+  }
+  .btn-primary:hover::after {
+    transform: translateX(120%);
+  }
 }
-.btn-primary:hover::after {
-  transform: translateX(120%);
+/* Quick press feedback for taps */
+.btn-primary:active,
+.btn-ghost:active {
+  transform: scale(0.97);
+  transition-duration: 0.1s;
 }
 
 .btn-ghost {
@@ -216,10 +245,15 @@ body::before {
     border-color 0.3s ease,
     transform 0.3s ease;
 }
-.btn-ghost:hover {
+@media (hover: hover) {
+  .btn-ghost:hover {
+    background: rgb(249 220 148 / 0.1);
+    border-color: var(--color-gold);
+    transform: translateY(-2px);
+  }
+}
+.btn-ghost:active {
   background: rgb(249 220 148 / 0.1);
-  border-color: var(--color-gold);
-  transform: translateY(-2px);
 }
 
 /* Card with a spotlight that follows the mouse (set --x / --y from JS) */
@@ -241,8 +275,10 @@ body::before {
     transparent 45%
   );
 }
-.spotlight:hover::before {
-  opacity: 1;
+@media (hover: hover) {
+  .spotlight:hover::before {
+    opacity: 1;
+  }
 }
 
 /* Rising glowing embers in the hero */
@@ -250,10 +286,17 @@ body::before {
   position: absolute;
   bottom: -10px;
   border-radius: 999px;
+  /* the soft gradient already looks blurred — no filter needed, which keeps this cheap to animate */
   background: radial-gradient(circle, #fff3cf 0%, #e9b44c 45%, transparent 70%);
-  filter: blur(0.5px);
   animation: rise linear infinite;
   opacity: 0;
+  will-change: transform, opacity;
+}
+/* Half as many sparks on phones */
+@media (width < 40rem) {
+  .ember:nth-child(2n) {
+    display: none;
+  }
 }
 @keyframes rise {
   0% {

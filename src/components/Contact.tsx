@@ -90,7 +90,15 @@ export default function Contact() {
                     <span className="min-w-0 flex-1">
                       <span className="block text-[0.7rem] uppercase tracking-[0.2em] text-muted sm:text-xs">{d.label}</span>
                       <span className="mt-0.5 block text-[0.95rem] leading-snug text-cream [overflow-wrap:anywhere] sm:text-lg">
-                        {d.value}
+                        {d.label === "Email" ? (
+                          // lets a long address wrap neatly before the "@" on small phones
+                          <>
+                            {d.value.split("@")[0]}
+                            <wbr />@{d.value.split("@")[1]}
+                          </>
+                        ) : (
+                          d.value
+                        )}
                       </span>
                     </span>
                     {d.href && (

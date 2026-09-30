@@ -103,7 +103,7 @@ export default function Hero() {
               </span>
               {/* Revealed left-to-right like a pen stroke */}
               <motion.span
-                className="-mt-[0.14em] ml-[22%] block w-fit font-script text-[5.2rem] leading-[0.95] drop-shadow-[0_8px_28px_rgb(233_180_76/0.35)] sm:text-[7.5rem] xl:text-[9.5rem]"
+                className="-mt-[0.14em] ml-[22%] block w-fit font-script text-[5.2rem] leading-[0.95] sm:text-[7.5rem] lg:drop-shadow-[0_8px_28px_rgb(233_180_76/0.35)] xl:text-[9.5rem]"
                 initial={{ clipPath: "inset(-40% 100% -40% -20%)" }}
                 animate={{ clipPath: "inset(-40% -20% -40% -20%)" }}
                 transition={{ duration: 1.8, delay: 1.1, ease: [0.65, 0, 0.35, 1] }}
@@ -171,7 +171,7 @@ export default function Hero() {
             className="absolute -inset-[24%]"
             aria-hidden
           >
-            <Mandala className="size-full animate-spin-slow text-gold/25" />
+            <Mandala className="size-full animate-spin-slow text-gold/25 will-change-transform" />
           </motion.div>
           <div className="absolute inset-[8%] rounded-full bg-gold/25 blur-[70px]" aria-hidden />
 
