@@ -10,6 +10,7 @@ import Embers from "./Embers";
 import Mandala from "./Mandala";
 import { linkProps, quickLinks } from "./socials";
 import { Equalizer, ease } from "./ui";
+import { HindiName } from "./Wordmark";
 
 const notes = [
   { char: "♪", className: "left-[2%] top-[18%] text-3xl", delay: 0 },
@@ -72,39 +73,44 @@ export default function Hero() {
             {artist.tagline}
           </motion.p>
 
+          {/* ── Name lockup: Hindi calligraphy, regal capitals, gold signature ── */}
           <motion.p
-            initial={{ opacity: 0, filter: "blur(8px)" }}
-            animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1.2, delay: 0.5 }}
-            className="mt-7 font-hindi text-2xl text-gold sm:text-3xl"
-            lang="hi"
+            initial={{ opacity: 0, y: 12, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.2, delay: 0.5, ease }}
+            className="mt-8 flex items-center justify-center gap-4 lg:justify-start"
           >
-            {artist.nameHindi}
+            <span className="h-px w-10 bg-linear-to-r from-transparent to-gold sm:w-14" aria-hidden />
+            <HindiName className="animate-shimmer text-[2.6rem] sm:text-5xl" />
+            <span className="h-px w-10 bg-linear-to-l from-transparent to-gold sm:w-14" aria-hidden />
           </motion.p>
 
-          <h1 className="mt-1 font-display leading-[0.95]">
+          <h1 className="mt-1 flex justify-center lg:justify-start">
             <span className="sr-only">{artist.name}</span>
-            <span aria-hidden className="block overflow-hidden pb-2 text-[3.6rem] text-cream sm:text-8xl xl:text-[8.5rem]">
-              {artist.firstName.split("").map((ch, i) => (
-                <motion.span
-                  key={i}
-                  className="inline-block"
-                  initial={{ y: "110%", rotate: 10 }}
-                  animate={{ y: "0%", rotate: 0 }}
-                  transition={{ duration: 1, delay: 0.6 + i * 0.06, ease }}
-                >
-                  {ch}
-                </motion.span>
-              ))}
-            </span>
-            <span aria-hidden className="block overflow-hidden pb-4 text-[3.6rem] sm:text-8xl xl:text-[8.5rem]">
+            <span aria-hidden className="inline-block text-left">
+              <span className="block overflow-hidden pb-1 font-name text-[3.9rem] font-medium uppercase leading-none tracking-[0.06em] text-cream sm:text-[5.5rem] xl:text-[7rem]">
+                {artist.firstName.split("").map((ch, i) => (
+                  <motion.span
+                    key={i}
+                    className="inline-block"
+                    initial={{ y: "110%", rotate: 10 }}
+                    animate={{ y: "0%", rotate: 0 }}
+                    transition={{ duration: 1, delay: 0.6 + i * 0.06, ease }}
+                  >
+                    {ch}
+                  </motion.span>
+                ))}
+              </span>
+              {/* Revealed left-to-right like a pen stroke */}
               <motion.span
-                className="inline-block"
-                initial={{ y: "110%" }}
-                animate={{ y: "0%" }}
-                transition={{ duration: 1.1, delay: 1, ease }}
+                className="-mt-[0.14em] ml-[22%] block w-fit font-script text-[5.2rem] leading-[0.95] drop-shadow-[0_8px_28px_rgb(233_180_76/0.35)] sm:text-[7.5rem] xl:text-[9.5rem]"
+                initial={{ clipPath: "inset(-40% 100% -40% -20%)" }}
+                animate={{ clipPath: "inset(-40% -20% -40% -20%)" }}
+                transition={{ duration: 1.8, delay: 1.1, ease: [0.65, 0, 0.35, 1] }}
               >
-                <span className="text-gradient-gold animate-shimmer pr-3 italic">{artist.lastName}</span>
+                <span className="text-gradient-gold animate-shimmer -mx-[0.15em] px-[0.15em] py-[0.1em]">
+                  {artist.lastName}
+                </span>
               </motion.span>
             </span>
           </h1>

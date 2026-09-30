@@ -4,6 +4,9 @@
   --font-display: var(--font-playfair), Georgia, serif;
   --font-sans: var(--font-poppins), system-ui, sans-serif;
   --font-hindi: var(--font-tiro), serif;
+  --font-hindi-display: var(--font-amita), var(--font-tiro), serif;
+  --font-name: var(--font-cinzel), serif;
+  --font-script: var(--font-great-vibes), cursive;
 }
 
 @theme {
@@ -295,9 +298,13 @@ body::before {
 .ornament::before,
 .ornament::after {
   content: "";
+  flex-shrink: 0;
   height: 1px;
-  width: 3rem;
+  width: 1.75rem;
   background: linear-gradient(90deg, transparent, var(--color-gold));
+  @media (width >= 40rem) {
+    width: 3rem;
+  }
 }
 .ornament::after {
   transform: scaleX(-1);

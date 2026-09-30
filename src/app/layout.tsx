@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Poppins, Tiro_Devanagari_Hindi } from "next/font/google";
+import { Amita, Cinzel, Great_Vibes, Playfair_Display, Poppins, Tiro_Devanagari_Hindi } from "next/font/google";
 import Providers from "@/components/Providers";
 import { artist } from "@/data/site";
 import "./globals.css";
@@ -22,6 +22,27 @@ const tiro = Tiro_Devanagari_Hindi({
   subsets: ["devanagari", "latin"],
   weight: "400",
   variable: "--font-tiro",
+  display: "swap",
+});
+
+// Name lockup: calligraphic Hindi, regal capitals and a signature script.
+const amita = Amita({
+  subsets: ["devanagari"],
+  weight: "700",
+  variable: "--font-amita",
+  display: "swap",
+});
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  variable: "--font-cinzel",
+  display: "swap",
+});
+
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-great-vibes",
   display: "swap",
 });
 
@@ -66,7 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${playfair.variable} ${poppins.variable} ${tiro.variable}`}
+      className={`${playfair.variable} ${poppins.variable} ${tiro.variable} ${amita.variable} ${cinzel.variable} ${greatVibes.variable}`}
     >
       <body>
         <Providers>{children}</Providers>

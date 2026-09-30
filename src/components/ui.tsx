@@ -46,7 +46,7 @@ export function SectionHeading({
   return (
     <Reveal className={centered ? "mx-auto max-w-2xl text-center" : "max-w-xl"}>
       <p
-        className={`ornament text-xs font-medium uppercase tracking-[0.35em] ${
+        className={`ornament text-[0.7rem] font-medium uppercase tracking-[0.25em] sm:text-xs sm:tracking-[0.35em] ${
           centered ? "justify-center" : "before:hidden"
         }`}
       >

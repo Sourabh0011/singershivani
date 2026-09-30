@@ -62,7 +62,7 @@ export default function About() {
               transition={{ delay: 0.4, duration: 0.9, ease }}
               className="glass absolute -bottom-8 -right-2 max-w-[16rem] rounded-2xl p-5 sm:-right-8"
             >
-              <p className="font-hindi text-2xl leading-snug text-gold-light" lang="hi">
+              <p className="text-gradient-gold font-hindi-display text-3xl leading-normal" lang="hi">
                 सुर में बसी भक्ति
               </p>
               <figcaption className="mt-2 text-xs uppercase tracking-[0.2em] text-muted">

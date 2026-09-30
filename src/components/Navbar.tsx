@@ -6,6 +6,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { artist, contact, navLinks } from "@/data/site";
 import { linkProps, quickLinks } from "./socials";
 import { ease } from "./ui";
+import Wordmark, { HindiName } from "./Wordmark";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -55,13 +56,11 @@ export default function Navbar() {
           }`}
         >
           <a href="#home" className="group flex items-center gap-3" aria-label={`${artist.name} — home`}>
-            <span className="relative grid size-10 place-items-center rounded-full border border-gold/50 font-display text-lg italic text-gold-light transition-transform duration-500 group-hover:rotate-[360deg]">
+            <span className="relative grid size-10 place-items-center rounded-full border border-gold/50 pt-1 font-script text-[1.7rem] leading-none text-gold-light transition-transform duration-500 group-hover:rotate-[360deg]">
               S
               <span className="absolute inset-0 rounded-full bg-gold/10 blur-md" />
             </span>
-            <span className="font-display text-xl tracking-wide text-cream">
-              Shivani <span className="italic text-gold">Sharma</span>
-            </span>
+            <Wordmark />
           </a>
 
           <ul className="hidden items-center gap-1 lg:flex">
@@ -118,9 +117,7 @@ export default function Navbar() {
             aria-label="Menu"
           >
             <div className="flex items-center justify-between">
-              <span className="font-display text-xl text-cream">
-                Shivani <span className="italic text-gold">Sharma</span>
-              </span>
+              <Wordmark />
               <button
                 onClick={() => setOpen(false)}
                 className="grid size-11 place-items-center rounded-full border border-gold/30 text-gold-light"
@@ -156,6 +153,9 @@ export default function Navbar() {
               transition={{ delay: 0.6 }}
               className="space-y-5"
             >
+              <p className="text-center">
+                <HindiName className="text-4xl" />
+              </p>
               <a href="#contact" onClick={() => setOpen(false)} className="btn-primary w-full">
                 Book a Performance
               </a>

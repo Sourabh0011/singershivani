@@ -1,6 +1,7 @@
 import { FaHeart } from "react-icons/fa";
 import { artist, contact, navLinks } from "@/data/site";
 import { linkProps, quickLinks } from "./socials";
+import Wordmark, { HindiName } from "./Wordmark";
 
 export default function Footer() {
   return (
@@ -8,11 +9,11 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="flex flex-col items-center gap-10 text-center lg:flex-row lg:items-start lg:justify-between lg:text-left">
           <div className="max-w-sm">
-            <p className="font-hindi text-xl text-gold" lang="hi">
-              {artist.nameHindi}
+            <p>
+              <HindiName className="text-3xl" />
             </p>
-            <p className="mt-1 font-display text-3xl text-cream">
-              Shivani <span className="italic text-gold-light">Sharma</span>
+            <p className="-mt-1">
+              <Wordmark size="lg" />
             </p>
             <p className="mt-3 text-sm leading-relaxed text-muted">{artist.role}. Bringing bhakti, joy and melody to every stage.</p>
           </div>
@@ -50,7 +51,7 @@ export default function Footer() {
       </div>
 
       <p
-        className="pointer-events-none mt-16 select-none whitespace-nowrap text-center font-display text-[12.5vw] italic leading-[0.8] text-transparent [-webkit-text-stroke:1px_rgb(233_180_76/0.25)]"
+        className="pointer-events-none mt-16 select-none whitespace-nowrap text-center font-script text-[15vw] leading-[1.1] text-transparent [-webkit-text-stroke:1px_rgb(233_180_76/0.3)]"
         aria-hidden
       >
         Shivani Sharma
